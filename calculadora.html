@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador | Parâmetros</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <img src="logo.png" alt="Rosa & Souza Ramos Sociedade de Advogados" class="logo-img">
+    </header>
+
+    <div class="container">
+        <form id="calcForm">
+            <h3>Parâmetros do Projeto</h3>
+            <p style="font-size: 0.85rem; margin-bottom: 30px; color: #666;">
+                Insira os dados da competência atual. O sistema aplicará as vedações e alíquotas da LCP 224/2025.
+            </p>
+
+            <label>Regime Tributário Atual</label>
+            <select id="regime" required onchange="toggleInputs()">
+                <option value="lucro_presumido">Lucro Presumido (Construtora/Inc.)</option>
+                <option value="ret">RET (Incorporação Imobiliária)</option>
+                <option value="lucro_real">Lucro Real (Grandes Estruturas)</option>
+            </select>
+
+            <div id="retOption" class="dynamic-option" style="display:none; background: #f9f9f9; padding: 15px; margin-bottom: 25px; border-left: 3px solid var(--brand-gold);">
+                <label style="display:flex; align-items:center; margin-bottom:0;">
+                    <input type="checkbox" id="isMCMV" style="width: auto; margin: 0 10px 0 0;">
+                    Projeto Minha Casa Minha Vida? (Proteção LCP 224)
+                </label>
+                <small style="display:block; margin-top:5px; color:#666;">Projetos MCMV estão isentos da redução linear de benefícios.</small>
+            </div>
+
+            <div id="realOption" class="dynamic-option" style="display:none; background: #eef2f5; padding: 15px; margin-bottom: 25px; border-left: 3px solid #333;">
+                <label>Margem de Lucro Fiscal Estimada (%)</label>
+                <input type="number" id="margemLucro" placeholder="Ex: 8.5 (Lucro Líquido Fiscal)" style="margin-bottom: 10px;">
+                <small style="display:block; margin-bottom: 15px; color:#666;">Informe a % de lucro efetivo sobre a receita após custos e despesas.</small>
+
+                <label>Regime de PIS/COFINS</label>
+                <select id="tipoPisCofins">
+                    <option value="cumulativo">Cumulativo (Obra de Construção Civil - 3,65%)</option>
+                    <option value="nao_cumulativo">Não-Cumulativo (Regra Geral - 9,25%)</option>
+                </select>
+            </div>
+
+            <label>Receita Bruta Acumulada no Ano (R$)</label>
+            <input type="number" id="receitaAnual" placeholder="Ex: 6000000.00" required>
+            <small id="hintPresumido" style="display:block; margin-top:-20px; margin-bottom:20px; color:var(--alert-red); font-size: 0.75rem;">
+                *Fundamental para verificar a trava de R$ 5MM (Art. 4º, §5º LCP 224).
+            </small>
+
+            <label>Faturamento deste Mês (R$)</label>
+            <input type="number" id="receitaMes" placeholder="Ex: 500000.00" required>
+
+            <label>Unidades Vendidas no Mês</label>
+            <input type="number" id="unidades" placeholder="0" required>
+
+            <div style="margin-top: 30px; padding: 20px; border: 1px dashed #ccc; background-color: #fff;">
+                <label style="display:flex; align-items:start; margin-bottom:0;">
+                    <input type="checkbox" id="checkBets" required style="width: auto; margin: 5px 10px 0 0;">
+                    <span>Declaro que <strong>NÃO</strong> veiculo publicidade de operadores de apostas ("Bets") não autorizados (Compliance LCP 224 Art. 6º).</span>
+                </label>
+            </div>
+
+            <button type="button" class="btn-gold" onclick="calcular()">PROCESSAR CENÁRIO</button>
+        </form>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <img src="tassio.png" alt="Dr. Tássio Souza Ramos" class="profile-pic">
+            <div class="footer-info">
+                <h4>Dr. Tássio Souza Ramos</h4>
+                <p>OAB/SP nº 453.663</p>
+                <a href="https://rosasouzaramos.com.br/blog/" target="_blank" class="blog-link">
+                    Leia nossos artigos no Blog Jurídico <i class="fas fa-external-link-alt" style="font-size: 0.8em;"></i>
+                </a>
+            </div>
+        </div>
+        <p style="margin-top: 30px; font-size: 0.7rem; color: #ccc;">
+            &copy; 2025 Rosa & Souza Ramos Sociedade de Advogados. Todos os direitos reservados.
+        </p>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        function toggleInputs() {
+            const regime = document.getElementById('regime').value;
+            
+            // Esconde tudo primeiro
+            document.getElementById('retOption').style.display = 'none';
+            document.getElementById('realOption').style.display = 'none';
+            
+            // Mostra específico
+            if (regime === 'ret') {
+                document.getElementById('retOption').style.display = 'block';
+            } else if (regime === 'lucro_real') {
+                document.getElementById('realOption').style.display = 'block';
+                // Oculta aviso de trava do presumido pois não se aplica ao Real
+                document.getElementById('hintPresumido').style.display = 'none';
+            } else {
+                // Lucro Presumido
+                document.getElementById('hintPresumido').style.display = 'block';
+            }
+        }
+    </script>
+</body>
+</html>

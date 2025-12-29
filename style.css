@@ -1,0 +1,238 @@
+/* style.css - Design Sóbrio e Estático */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Cinzel:wght@400;700&display=swap');
+
+:root {
+    --primary-black: #111111;
+    --text-grey: #333333;
+    --brand-gold: #C5A059;
+    --brand-gold-hover: #b08d48;
+    --bg-light: #f8f8f8;
+    --alert-red: #8a1c1c;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: var(--bg-light);
+    color: var(--text-grey);
+    line-height: 1.6;
+    /* Removido o padding-top excessivo da animação */
+}
+
+/* Tipografia */
+h1, h2, h3 {
+    font-family: 'Cinzel', serif;
+    color: var(--primary-black);
+    font-weight: 700;
+}
+
+/* Header Estático */
+header {
+    background-color: #ffffff;
+    padding: 30px 0;
+    text-align: center;
+    border-bottom: 3px solid var(--brand-gold);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    /* Removemos position: fixed e transition */
+}
+
+.logo-img {
+    max-width: 280px;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+
+/* Container */
+.container {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 40px;
+    background: white;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+    border-radius: 4px;
+    border-top: 1px solid rgba(197, 160, 89, 0.3);
+}
+
+/* Botões */
+.btn-gold {
+    background: linear-gradient(135deg, #111 0%, #333 100%);
+    color: var(--brand-gold);
+    padding: 16px 30px;
+    border: 1px solid var(--brand-gold);
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 25px;
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+}
+
+.btn-gold:hover { 
+    background: var(--brand-gold); 
+    color: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(197, 160, 89, 0.4);
+}
+
+.btn-gold:disabled {
+    background: #ccc;
+    border-color: #ccc;
+    color: #666;
+    transform: none;
+    cursor: not-allowed;
+}
+
+/* Inputs */
+input, select {
+    width: 100%;
+    padding: 14px;
+    margin: 8px 0 25px 0;
+    border: 1px solid #e0e0e0;
+    border-radius: 2px;
+    background-color: #fafafa;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.95rem;
+    color: #333;
+}
+
+input:focus, select:focus {
+    outline: none;
+    border-color: var(--brand-gold);
+    background-color: #fff;
+    box-shadow: 0 0 0 3px rgba(197, 160, 89, 0.1);
+}
+
+label { 
+    font-size: 0.85rem;
+    font-weight: 600; 
+    color: var(--primary-black);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    display: block;
+    margin-bottom: 5px;
+}
+
+/* Dashboard */
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+}
+
+.card {
+    background: #fff;
+    padding: 30px;
+    border: 1px solid #eee;
+    border-left: 4px solid var(--brand-gold);
+}
+
+.card h3 {
+    font-size: 1.1rem;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+}
+
+.card.alert { 
+    border-left-color: var(--alert-red); 
+    background-color: #fffbfb;
+    border: 1px solid #fadddd;
+}
+
+/* WhatsApp */
+.whatsapp-float {
+    position: fixed;
+    width: 65px;
+    height: 65px;
+    bottom: 40px;
+    right: 40px;
+    background: linear-gradient(135deg, var(--brand-gold) 0%, #a38243 100%);
+    color: #FFF;
+    border-radius: 50%;
+    text-align: center;
+    font-size: 32px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid white;
+    transition: transform 0.3s;
+}
+
+.whatsapp-float:hover { transform: scale(1.1); }
+
+/* --- RODAPÉ COM PERFIL (NOVO) --- */
+
+footer {
+    margin-top: 60px;
+    padding: 40px 20px;
+    background-color: #fff;
+    border-top: 1px solid #e0e0e0;
+    text-align: center;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.profile-pic {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%; /* Deixa a foto redonda */
+    object-fit: cover;
+    border: 2px solid var(--brand-gold); /* Borda Dourada */
+    padding: 2px; /* Espaço entre foto e borda */
+}
+
+.footer-info {
+    text-align: left;
+}
+
+.footer-info h4 {
+    font-family: 'Cinzel', serif;
+    color: var(--primary-black);
+    margin-bottom: 4px;
+    font-size: 1.1rem;
+}
+
+.footer-info p {
+    font-size: 0.85rem;
+    color: #666;
+    margin-bottom: 8px;
+}
+
+.blog-link {
+    color: var(--brand-gold);
+    font-weight: 600;
+    text-decoration: none;
+    font-size: 0.9rem;
+    border-bottom: 1px solid transparent;
+    transition: 0.3s;
+}
+
+.blog-link:hover {
+    color: var(--brand-gold-hover);
+    border-bottom: 1px solid var(--brand-gold);
+}
+
+/* Ajuste para Celular */
+@media (max-width: 480px) {
+    .footer-content {
+        flex-direction: column;
+        text-align: center;
+    }
+    .footer-info {
+        text-align: center;
+    }
+}

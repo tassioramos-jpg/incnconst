@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rosa & Souza Ramos | Inteligência Tributária</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+    <header>
+        <img src="logo.png" alt="Rosa & Souza Ramos Sociedade de Advogados" class="logo-img">
+    </header>
+
+    <div class="container">
+        <div style="text-align: center; margin-bottom: 40px;">
+            <h2>A Lógica Tributária Mudou</h2>
+            <p>Diagnóstico de impacto da Lei Complementar nº 224/2025 e Reforma Tributária.</p>
+        </div>
+
+        <form id="leadForm">
+            <label>Nome Completo</label>
+            <input type="text" name="nome" required placeholder="Dr(a). Nome Sobrenome">
+
+            <label>Construtora / Incorporadora</label>
+            <input type="text" name="empresa" required>
+
+            <label>Cargo</label>
+            <select name="cargo">
+                <option>Sócio / Diretor</option>
+                <option>Gestor Financeiro</option>
+                <option>Jurídico Interno</option>
+            </select>
+
+            <label>Email Corporativo</label>
+            <input type="email" name="email" required>
+
+            <label>WhatsApp</label>
+            <input type="tel" name="whatsapp" required placeholder="(11) 99999-9999">
+
+            <button type="submit" id="btnSubmit" class="btn-gold">Iniciar Diagnóstico Estratégico</button>
+        </form>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <img src="tassio.png" alt="Dr. Tássio Souza Ramos" class="profile-pic">
+            
+            <div class="footer-info">
+                <h4>Dr. Tássio Souza Ramos</h4>
+                <p>OAB/SP nº 453.663</p>
+                
+                <a href="https://rosasouzaramos.com.br/blog/" target="_blank" class="blog-link">
+                    Leia nossos artigos no Blog Jurídico <i class="fas fa-external-link-alt" style="font-size: 0.8em;"></i>
+                </a>
+            </div>
+        </div>
+        <p style="margin-top: 30px; font-size: 0.7rem; color: #ccc;">
+            &copy; 2025 Rosa & Souza Ramos Sociedade de Advogados. Todos os direitos reservados.
+        </p>
+    </footer>
+
+    <script>
+        const form = document.getElementById("leadForm");
+        const button = document.getElementById("btnSubmit");
+
+        async function handleSubmit(event) {
+            event.preventDefault(); // Impede o redirecionamento padrão do Formspree
+            
+            // Feedback visual
+            button.disabled = true;
+            button.innerText = "Processando acesso...";
+            button.style.backgroundColor = "#ccc";
+            button.style.borderColor = "#ccc";
+
+            const data = new FormData(event.target);
+
+            try {
+                // Envio silencioso via AJAX
+                const response = await fetch("https://formspree.io/f/maqyarzl", {
+                    method: "POST",
+                    body: data,
+                    headers: {'Accept': 'application/json'}
+                });
+
+                if (response.ok) {
+                    // SUCESSO: Vai para a calculadora
+                    window.location.href = "calculadora.html";
+                } else {
+                    alert("Ocorreu um erro no envio. Tente novamente.");
+                    button.disabled = false;
+                    button.innerText = "Iniciar Diagnóstico Estratégico";
+                }
+            } catch (error) {
+                alert("Erro de conexão. Verifique sua internet.");
+                button.disabled = false;
+                button.innerText = "Iniciar Diagnóstico Estratégico";
+            }
+        }
+
+        form.addEventListener("submit", handleSubmit);
+    </script>
+</body>
+</html>

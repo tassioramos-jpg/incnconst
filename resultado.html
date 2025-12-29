@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Relatório de Inteligência</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <img src="logo.png" alt="Rosa & Souza Ramos Sociedade de Advogados" class="logo-img">
+    </header>
+
+    <div class="container">
+        
+        <div id="alertBox" class="card alert" style="display:none; margin-bottom: 25px;">
+            <h3 style="color: var(--alert-red); border-bottom-color: #fadddd;">
+                <i class="fas fa-exclamation-triangle"></i> Atenção: Trava de R$ 5 Milhões
+            </h3>
+            <p>Conforme <strong>LCP 224/2025 (Art. 4º, § 5º)</strong>, sua receita anual excede o limite legal. Foi aplicado o <strong>acréscimo de 10%</strong> sobre a presunção do lucro no cálculo abaixo.</p>
+        </div>
+
+        <div class="dashboard-grid">
+            <div class="card">
+                <h3>Estimativa de Impostos (Mês)</h3>
+                <h2 id="valorImposto" style="font-size: 2.2rem; color: var(--primary-black); margin: 15px 0;">R$ 0,00</h2>
+                <p>Alíquota Efetiva: <strong id="aliquotaEfetiva" style="color: var(--brand-gold);">0%</strong></p>
+                <p style="font-size: 0.75rem; color: #999; margin-top: 10px;">Baseado no regime informado.</p>
+            </div>
+
+            <div class="card">
+                <h3>Radar de Compliance</h3>
+                <ul style="list-style: none; margin-top: 15px;">
+                    <li style="margin-bottom: 15px; display: flex; align-items: center; gap: 10px;">
+                        <i class="fas fa-check-circle" style="color: green;"></i> 
+                        <div>
+                            <strong>CIB (Cadastro de Obras):</strong><br>
+                            <span id="msgCib" style="font-size: 0.9rem;">Verificar Cadastro.</span>
+                        </div>
+                    </li>
+                    <li style="margin-bottom: 10px; display: flex; align-items: center; gap: 10px;">
+                        <i class="fas fa-file-contract" style="color: var(--brand-gold);"></i> 
+                        <div>
+                            <strong>DIMOB:</strong><br>
+                            <span id="msgDimob" style="font-size: 0.9rem;">Nenhuma venda.</span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="card" style="margin-top: 25px;">
+            <h3>Planejamento Sucessório & Lucros</h3>
+            <p style="margin-bottom: 15px;">Para distribuição de resultados, considere as novas regras (Vigência Jan/2026):</p>
+            <ul style="margin-left: 20px; font-size: 0.95rem;">
+                <li style="margin-bottom: 8px;">
+                    <strong>Dividendos:</strong> Permanecem isentos (Respeitando os limites contábeis).
+                </li>
+                <li>
+                    <strong>JCP (Juros s/ Capital Próprio):</strong> Nova alíquota de retenção na fonte de <strong>17,5%</strong> (Conforme Art. 8º da LCP 224/2025).
+                </li>
+            </ul>
+        </div>
+
+        <div style="text-align: center; margin-top: 50px; padding-top: 20px; border-top: 1px solid #eee;">
+            <p style="font-size: 0.9rem;">Este cenário é uma estimativa matemática baseada nos inputs.</p>
+            <p style="font-weight: 700; color: var(--primary-black); margin-top: 5px;">A segurança jurídica exige a análise contratual personalizada.</p>
+            <p style="margin-top: 20px; font-family: 'Cinzel', serif;">Fale agora com a banca Rosa & Souza Ramos.</p>
+        </div>
+    </div>
+
+    <a href="https://wa.me/5511935355520?text=Ol%C3%A1%2C%20fiz%20a%20simula%C3%A7%C3%A3o%20no%20portal%20imobili%C3%A1rio%20e%20gostaria%20de%20validar%20meu%20cen%C3%A1rio%20com%20o%20Dr.%20T%C3%A1ssio." class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <footer>
+        <div class="footer-content">
+            <img src="tassio.png" alt="Dr. Tássio Souza Ramos" class="profile-pic">
+            
+            <div class="footer-info">
+                <h4>Dr. Tássio Souza Ramos</h4>
+                <p>OAB/SP nº 453.663</p>
+                
+                <a href="https://rosasouzaramos.com.br/blog/" target="_blank" class="blog-link">
+                    Leia nossos artigos no Blog Jurídico <i class="fas fa-external-link-alt" style="font-size: 0.8em;"></i>
+                </a>
+            </div>
+        </div>
+        <p style="margin-top: 30px; font-size: 0.7rem; color: #ccc;">
+            &copy; 2025 Rosa & Souza Ramos Sociedade de Advogados. Todos os direitos reservados.
+        </p>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Carrega os dados ao abrir a página
+        window.onload = carregarResultados;
+    </script>
+</body>
+</html>
